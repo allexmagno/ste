@@ -30,8 +30,8 @@ float tempBparameter(float R){
   return 1/(1/298.15 + (1/B_1)*log(R/R0));
 }
 
-long int tempBparameterInt(float R){
-  return 1000/(1000/298.15 + (1000/(B_1))*log(R/(R0)));
+long int tempBparameterInt(int R){
+  return 29815*B_1/(B_1*100 + 29815*log(R/R0));
 }
 
 void loop() {
@@ -45,20 +45,24 @@ void loop() {
  temperatura = tempSteinhartHart(Rntc);
  time2 = micros();
  digitalWrite(ledPin, LOW);
+ Serial.print("Tempo: ");
  Serial.print(time2 - time1);
- Serial.print("us Steinhart = ");
- Serial.println(temperatura-273);
+ Serial.print("us. Steinhart = ");
+ Serial.print(temperatura-273);
+ Serial.println("°C\n");
  delay(1000);
 
 // Leitura utilizando o calculo com o parâmetro B float
  digitalWrite(ledPin, HIGH);
  time1 = micros();
  temperatura1 = tempBparameter(Rntc);
+ time2 = micros();
  digitalWrite(ledPin, LOW);
- time2 = micros(); 
+ Serial.print("Tempo: ");
  Serial.print(time2-time1);
- Serial.print("us parametro B = ");
- Serial.println(temperatura1-273);
+ Serial.print("us. Parametro B FLOAT = ");
+ Serial.print(temperatura1-273);
+ Serial.println("°C\n");
 
 
  // Leitura utilizando o calculo com o parâmetro B INT
@@ -67,9 +71,11 @@ void loop() {
  temperatura2 = tempBparameterInt(Rntc);
  time2 = micros();
  digitalWrite(ledPin, LOW);
+ Serial.print("Tempo: ");
  Serial.print(time2 - time1);
- Serial.print("us parametro B INT = ");
- Serial.println(temperatura2 - 273);
+ Serial.print("us. Parametro B INT = ");
+ Serial.print(temperatura2 - 273);
+ Serial.println("°C\n");
  delay(2000);
 
 }

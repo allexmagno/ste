@@ -1,0 +1,38 @@
+
+O sketch usa 4472 bytes (1%) de espaço de armazenamento para programas. O máximo são 253952 bytes.
+Variáveis globais usam 242 bytes (2%) de memória dinâmica, deixando 7950 bytes para variáveis locais. O máximo são 8192 bytes.
+Tempo: 228us. Parametro B INT = 20°C
+Tempo: 228us. Parametro B INT = 20°C
+Tempo: 228us. Parametro B INT = 20°C
+
+
+
+int Rinf
+O sketch usa 4352 bytes (1%) de espaço de armazenamento para programas. O máximo são 253952 bytes.
+Variáveis globais usam 245 bytes (2%) de memória dinâmica, deixando 7947 bytes para variáveis locais. O máximo são 8192 bytes.
+Tempo: 284us. Parametro B INT Rif= 19°C
+Tempo: 284us. Parametro B INT Rif= 19°C
+Tempo: 284us. Parametro B INT Rif= 19°C
+
+
+
+
+float B
+O sketch usa 4842 bytes (1%) de espaço de armazenamento para programas. O máximo são 253952 bytes.
+Variáveis globais usam 262 bytes (3%) de memória dinâmica, deixando 7930 bytes para variáveis locais. O máximo são 8192 bytes.
+Tempo: 220us. Parametro B FLOAT = 20.24°C
+Tempo: 224us. Parametro B FLOAT = 20.24°C
+Tempo: 224us. Parametro B FLOAT = 20.24°C
+
+float steinhart-hart
+O sketch usa 5338 bytes (2%) de espaço de armazenamento para programas. O máximo são 253952 bytes.
+Variáveis globais usam 240 bytes (2%) de memória dinâmica, deixando 7952 bytes para variáveis locais. O máximo são 8192 bytes.
+560us. Steinhart = 20.20°C
+556us. Steinhart = 20.20°C
+556us. Steinhart = 20.20°C
+
+
+
+
+
+

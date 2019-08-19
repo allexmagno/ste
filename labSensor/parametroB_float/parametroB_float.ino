@@ -9,14 +9,22 @@
 
 #define sensorPin 0   // Pino de entrada do sensor de temperatura
 #define ledPin 13     // Pino que era ativar o led
-float temp = 0;       // Valor que será lido do sensor
-float Rntc = 0;       // Valor da resistencia calculada a partir do valor do sensor
-float temperatura = 0;      // Valor da temperatura
+#define R10K 10000.0
+// Valores de B, utilizando a tabela de resistência
+#define R0 10000.0
+#define Beta 3950.0
+#define T0 298.15
+#define Vin_d 1023.0
+#define Vout_d 753
+
+float temp;       // Valor que será lido do sensor
+float Rntc;       // Valor da resistencia calculada a partir do valor do sensor
+float TK;      // Valor da temperatura
+float TC;
+
 unsigned long time1, time2; // Parâmetros para o calculo do tempo de execução da função
 
-// Valores de B, utilizando a tabela de resistência
-float B = 3950;
-float R0 = 10000;
+
 
 
 void setup() {
@@ -26,25 +34,27 @@ void setup() {
 
 // Função que implementa o parâmetro B para calcular o valor da temperatura
 float tempBparameter(float R){
-  return 1/(1/298.15 + (1/B)*log(R/R0));
+  return 1/(1/298.15 + (1/Beta)*log(R/R0));
 }
 
+
 void loop(){
-  
+
  temp = analogRead(sensorPin);          // ler o valor do sensor
- Rntc = ((1023/temp) - 1)*10000;         // Calcula o valor da resistência
+ Rntc = ((Vin_d/temp) - 1)*R10K;         // Calcula o valor da resistência
 
  
  digitalWrite(ledPin, HIGH);            // Liga o Led
  time1 = micros();                      // Captura o tempo inicial
- temperatura = tempBparameter(Rntc); // Obtenção da temperatura a partir do calculo de Steinhart-Hart
+ TK = tempBparameter(Rntc);             // Obtenção da temperatura a partir do calculo do parâmetro B
  time2 = micros();                      // Captura o tempo final
  digitalWrite(ledPin, LOW);             // Desliga o Led
- Serial.print("Tempo: ");
- Serial.print(time2 - time1);           // Tempo de executção do cálculo em us
+ TC = TK -273;
+  Serial.print("Tempo: ");
+ Serial.print(time2-time1);
  Serial.print("us. Parametro B FLOAT = ");
- Serial.print(temperatura-273);       // Temperatura obtida
- Serial.println("°C");
+ Serial.print(TC);
+ Serial.println("°C\n");
  delay(1000);
  
 }

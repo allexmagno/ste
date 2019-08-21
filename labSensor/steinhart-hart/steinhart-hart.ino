@@ -34,11 +34,11 @@ float tempSteinhartHart(float R){
 void loop(){
   
  temp = analogRead(sensorPin);          // ler o valor do sensor
- Rntc = ((1023/temp) - 1)*10000;        // Calcula o valor da resistência
 
  
  digitalWrite(ledPin, HIGH);            // Liga o Led
  time1 = micros();                      // Captura o tempo inicial
+ Rntc = ((1023/temp) - 1)*10000;        // Calcula o valor da resistência
  temperatura = tempSteinhartHart(Rntc); // Obtenção da temperatura a partir do calculo de Steinhart-Hart
  time2 = micros();                      // Captura o tempo final
  digitalWrite(ledPin, LOW);             // Desliga o Led

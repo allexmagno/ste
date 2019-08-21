@@ -41,11 +41,12 @@ float tempBparameter(float R){
 void loop(){
 
  temp = analogRead(sensorPin);          // ler o valor do sensor
- Rntc = ((Vin_d/temp) - 1)*R10K;         // Calcula o valor da resistência
+ 
 
  
  digitalWrite(ledPin, HIGH);            // Liga o Led
  time1 = micros();                      // Captura o tempo inicial
+ Rntc = ((Vin_d/temp) - 1)*R10K;         // Calcula o valor da resistência
  TK = tempBparameter(Rntc);             // Obtenção da temperatura a partir do calculo do parâmetro B
  time2 = micros();                      // Captura o tempo final
  digitalWrite(ledPin, LOW);             // Desliga o Led

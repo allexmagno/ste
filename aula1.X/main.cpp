@@ -27,7 +27,27 @@ void setup(unsigned int ubrr){
     //UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);
     UCSR0C = (3 << UCSZ00); // Mesma configuração feita acima
     UCSR0B |= (1 << RXEN0) | (1 << TXEN0);
+    
+    ADMUX |= (1 << REFS0);
+    ADCSRA |= (1 << ADEN) & (7 << ADPS0);
 }
+
+void adc_init(void){
+
+    ADMUX |= (1 << REFS0);
+    ADCSRA |= (1 << ADEN) & (7 << ADPS0);
+}
+unsigned int readAnalog(void){
+    
+   ADCSRA|=(1<<ADSC);
+
+   while((ADCSRA & (1<<ADSC)));
+   
+   return ADC;
+
+}
+
+
 
 unsigned char rx(void){
 
@@ -67,10 +87,13 @@ int main() {
     
     */
     setup(MYUBRR);
-    unsigned char buffer;
+    adc_init();
+    unsigned int buffer;
+    
     
     for(;;){
-        buffer = rx();
+        //buffer = rx();
+        buffer = readAnalog();
         tx(buffer);
     }
     return 0;

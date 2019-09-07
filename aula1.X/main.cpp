@@ -26,17 +26,23 @@ void setup(unsigned int ubrr){
     UBRR0L = (unsigned char) ubrr;
     */
     
+    
+   // Configuração para GPIO
     DDRB |= (1 << 7);
     DDRE &= ~(1 << 4);
+    
+    // Configuração do serial
     UBRR0 = ubrr;
     /* Frame format: 8N1*/
     //UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);
     UCSR0C = (3 << UCSZ00); // Mesma configuração feita acima
     UCSR0B |= (1 << RXEN0) | (1 << TXEN0);
     
+    // Configuração para conversor digital/Analogico
     ADMUX |= (1 << REFS0);
     ADCSRA |= (1 << ADEN) & (7 << ADPS0);
     
+    // Configuração de interrupções
     EICRB |= (3 << ISC40);
     EIMSK |= (1 << INT4);
     
@@ -44,13 +50,15 @@ void setup(unsigned int ubrr){
     
 }
 
+// Configuração do A/D
 void adc_init(void){
-
+    
     ADMUX |= (1 << REFS0);
     ADCSRA |= (1 << ADEN) | (7 << ADPS0);
     
 }
 
+// Piscar LED
 void blink_led(){
     PORTB |= (1 << 7);
     //_delay_ms(1000);
@@ -59,7 +67,7 @@ void blink_led(){
 }
 
 
-
+// Leitor da portal analogica
 unsigned int readAnalog(void){
     
    ADCSRA|=(1<<ADSC);
@@ -71,7 +79,7 @@ unsigned int readAnalog(void){
 }
 
 
-
+// RX serial
 unsigned char rx(void){
 
     while( !(UCSR0A & (1 << RXC0)));
@@ -79,12 +87,14 @@ unsigned char rx(void){
     
 }
 
+// TX Serial
 void tx(unsigned int data){
     
     while ( !(UCSR0A & (1 << UDRE0)));
     UDR0 = data;
 }
 
+// Lê valor do botão e envia P para a serial
 void read_button(){
     if(PINE & (1 << 4));
         tx('P');
@@ -115,25 +125,26 @@ int main() {
     // UCSR0C = 000001100;
     
     */
+    // Configurações iniciais
     setup(MYUBRR);
     adc_init();
     sei();
     
-    unsigned int buffer;
     
+    // Valor que será retonado após conversão serial em 16 bits
+    unsigned int buffer;
     
     for(;;){
         blink_led();
-        
 //        buffer = rx();
-        read_button();
-        
+        read_button();        
         //buffer = readAnalog();
         //tx(buffer);
     }
     return 0;
 }
 
+// Tx com interrupções
 ISR(INT4_vect){
     tx('P');
 }

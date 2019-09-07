@@ -11,6 +11,9 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+
+// Interrupções
+#include <avr/interrupt.h>
 /*
  * 
  */
@@ -22,6 +25,9 @@ void setup(unsigned int ubrr){
     UBRR0H = (unsigned char) (ubrr >> 8);
     UBRR0L = (unsigned char) ubrr;
     */
+    
+    DDRB |= (1 << 7);
+    DDRE &= ~(1 << 4);
     UBRR0 = ubrr;
     /* Frame format: 8N1*/
     //UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);
@@ -30,18 +36,35 @@ void setup(unsigned int ubrr){
     
     ADMUX |= (1 << REFS0);
     ADCSRA |= (1 << ADEN) & (7 << ADPS0);
+    
+    EICRB |= (3 << ISC40);
+    EIMSK |= (1 << INT4);
+    
+    
+    
 }
 
 void adc_init(void){
 
     ADMUX |= (1 << REFS0);
-    ADCSRA |= (1 << ADEN) & (7 << ADPS0);
+    ADCSRA |= (1 << ADEN) | (7 << ADPS0);
+    
 }
+
+void blink_led(){
+    PORTB |= (1 << 7);
+    //_delay_ms(1000);
+    PORTB &= ~(1 << 7);
+    //_delay_ms(1000);
+}
+
+
+
 unsigned int readAnalog(void){
     
    ADCSRA|=(1<<ADSC);
 
-   while((ADCSRA & (1<<ADSC)));
+   while(ADCSRA & (1<<ADSC));
    
    return ADC;
 
@@ -61,6 +84,12 @@ void tx(unsigned int data){
     while ( !(UCSR0A & (1 << UDRE0)));
     UDR0 = data;
 }
+
+void read_button(){
+    if(PINE & (1 << 4));
+        tx('P');
+}
+
 
 int main() {
 /*
@@ -88,14 +117,23 @@ int main() {
     */
     setup(MYUBRR);
     adc_init();
+    sei();
+    
     unsigned int buffer;
     
     
     for(;;){
-        //buffer = rx();
-        buffer = readAnalog();
-        tx(buffer);
+        blink_led();
+        
+//        buffer = rx();
+        read_button();
+        
+        //buffer = readAnalog();
+        //tx(buffer);
     }
     return 0;
 }
 
+ISR(INT4_vect){
+    tx('P');
+}

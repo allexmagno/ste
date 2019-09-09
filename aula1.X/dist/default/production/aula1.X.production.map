@@ -10,6 +10,18 @@ Discarded input sections
  .text          0x0000000000000000        0x0 build/default/production/main.o
  .data          0x0000000000000000        0x0 build/default/production/main.o
  .bss           0x0000000000000000        0x0 build/default/production/main.o
+ .text._Z5setupj
+                0x0000000000000000       0xb0 build/default/production/main.o
+ .text._Z8adc_initv
+                0x0000000000000000       0x34 build/default/production/main.o
+ .text._Z9blink_ledv
+                0x0000000000000000       0x34 build/default/production/main.o
+ .text._Z10readAnalogv
+                0x0000000000000000       0x48 build/default/production/main.o
+ .text._Z2rxv   0x0000000000000000       0x2c build/default/production/main.o
+ .text._Z2txj   0x0000000000000000       0x44 build/default/production/main.o
+ .text._Z11read_buttonv
+                0x0000000000000000       0x20 build/default/production/main.o
  .text          0x0000000000000000        0x0 /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/bin/../lib/gcc/avr/5.4.0/avr6/libgcc.a(_exit.o)
  .data          0x0000000000000000        0x0 /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/bin/../lib/gcc/avr/5.4.0/avr6/libgcc.a(_exit.o)
  .bss           0x0000000000000000        0x0 /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/bin/../lib/gcc/avr/5.4.0/avr6/libgcc.a(_exit.o)
@@ -154,7 +166,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000      0x2b2
+.text           0x0000000000000000      0x120
  *(.vectors)
  .vectors       0x0000000000000000       0xe4 /opt/microchip/mplabx/v5.25/packs/Microchip/ATmega_DFP/2.0.12/gcc/dev/atmega2560/avr6/crtatmega2560.o
                 0x0000000000000000                __vectors
@@ -268,29 +280,13 @@ END GROUP
                 0x00000000000000fc                __vector_42
                 0x0000000000000100                . = ALIGN (0x2)
  *(.text.*)
- .text._Z5setupj
-                0x0000000000000100       0x68 build/default/production/main.o
-                0x0000000000000100                _Z5setupj
- .text._Z8adc_initv
-                0x0000000000000168       0x34 build/default/production/main.o
-                0x0000000000000168                _Z8adc_initv
- .text._Z10readAnalogv
-                0x000000000000019c       0x48 build/default/production/main.o
-                0x000000000000019c                _Z10readAnalogv
- .text._Z2rxv   0x00000000000001e4       0x2c build/default/production/main.o
-                0x00000000000001e4                _Z2rxv
- .text._Z2txj   0x0000000000000210       0x44 build/default/production/main.o
-                0x0000000000000210                _Z2txj
- .text._Z11read_buttonv
-                0x0000000000000254       0x20 build/default/production/main.o
-                0x0000000000000254                _Z11read_buttonv
- .text.main     0x0000000000000274       0x3a build/default/production/main.o
-                0x0000000000000274                main
-                0x00000000000002ae                . = ALIGN (0x2)
+ .text.main     0x0000000000000100       0x1c build/default/production/main.o
+                0x0000000000000100                main
+                0x000000000000011c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000000000002ae        0x0 /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/bin/../lib/gcc/avr/5.4.0/avr6/libgcc.a(_exit.o)
-                0x00000000000002ae                exit
-                0x00000000000002ae                _exit
+ .fini9         0x000000000000011c        0x0 /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/bin/../lib/gcc/avr/5.4.0/avr6/libgcc.a(_exit.o)
+                0x000000000000011c                exit
+                0x000000000000011c                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -309,11 +305,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000000000002ae        0x4 /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/bin/../lib/gcc/avr/5.4.0/avr6/libgcc.a(_exit.o)
+ .fini0         0x000000000000011c        0x4 /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/bin/../lib/gcc/avr/5.4.0/avr6/libgcc.a(_exit.o)
  *(.fini0)
-                0x00000000000002b2                _etext = .
+                0x0000000000000120                _etext = .
 
-.data           0x0000000000800200        0x0 load address 0x00000000000002b2
+.data           0x0000000000800200        0x0 load address 0x0000000000000120
                 [!provide]                        PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -331,8 +327,8 @@ END GROUP
  *(.bss*)
  *(COMMON)
                 [!provide]                        PROVIDE (__bss_end, .)
-                0x00000000000002b2                __data_load_start = LOADADDR (.data)
-                0x00000000000002b2                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000000000000120                __data_load_start = LOADADDR (.data)
+                0x0000000000000120                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0000000000800200        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)

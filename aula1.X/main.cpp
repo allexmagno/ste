@@ -11,6 +11,7 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include <stdint.h>
 
 // Interrupções
 #include <avr/interrupt.h>
@@ -21,6 +22,7 @@
 // uint_16 (8)
 void setup(unsigned int ubrr){
  
+    
     /* Exemplo para capturar palavras maiores de 8 bits
     UBRR0H = (unsigned char) (ubrr >> 8);
     UBRR0L = (unsigned char) ubrr;
@@ -102,6 +104,9 @@ void read_button(){
 
 
 int main() {
+    
+    uint8_t a;
+    a++;
 /*
     // Configurando a porta B. Bit 7 para entrada e bit 6 para saída
     // Delocar o valor 7 posições: 1 << 7
@@ -124,7 +129,7 @@ int main() {
     // configuração 8N1
     // UCSR0C = 000001100;
     
-    */
+    
     // Configurações iniciais
     setup(MYUBRR);
     adc_init();
@@ -146,5 +151,5 @@ int main() {
 
 // Tx com interrupções
 ISR(INT4_vect){
-    tx('P');
+    tx('P');*/
 }

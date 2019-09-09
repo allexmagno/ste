@@ -12,6 +12,8 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>gpio.h</itemPath>
+      <itemPath>gpio.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -55,7 +57,7 @@
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
         <makeCustomizationPreStep></makeCustomizationPreStep>
         <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
-        <makeCustomizationPostStep>avrdude -c avrispmkII -P /dev/ttyUSB0 -D -p ${Device} -U flash:w:${ImagePath}:i</makeCustomizationPostStep>
+        <makeCustomizationPostStep></makeCustomizationPostStep>
         <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
@@ -80,7 +82,7 @@
         <property key="call-prologues" value="false"/>
         <property key="default-bitfield-type" value="true"/>
         <property key="default-char-type" value="true"/>
-        <property key="extra-include-directories" value=""/>
+        <property key="extra-include-directories" value="F_CPU 16000000UL"/>
         <property key="garbage-collect-data" value="true"/>
         <property key="garbage-collect-functions" value="true"/>
         <property key="inhibit-all" value="false"/>
@@ -134,7 +136,7 @@
         <property key="eep" value="false"/>
         <property key="external-ram-check" value="false"/>
         <property key="hex" value="true"/>
-        <property key="lss" value="false"/>
+        <property key="lss" value="true"/>
         <property key="omit-pack-options" value="false"/>
         <property key="relax-branches" value="false"/>
         <property key="srec" value="false"/>

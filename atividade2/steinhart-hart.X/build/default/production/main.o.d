@@ -14,7 +14,11 @@ build/default/production/main.o.d build/default/production/main.o: \
  /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/avr/include/util/delay.h \
  /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/avr/include/util/delay_basic.h \
  /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/avr/include/math.h \
- /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/avr/include/avr/interrupt.h
+ /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/avr/include/stdlib.h \
+ /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/lib/gcc/avr/5.4.0/include/stddef.h \
+ /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/avr/include/stdio.h \
+ /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/lib/gcc/avr/5.4.0/include/stdarg.h \
+ /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/avr/include/string.h
 
 /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/avr/include/avr/io.h:
 
@@ -44,4 +48,12 @@ build/default/production/main.o.d build/default/production/main.o: \
 
 /home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/avr/include/math.h:
 
-/home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/avr/include/avr/interrupt.h:
+/home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/avr/include/stdlib.h:
+
+/home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/lib/gcc/avr/5.4.0/include/stddef.h:
+
+/home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/avr/include/stdio.h:
+
+/home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/lib/gcc/avr/5.4.0/include/stdarg.h:
+
+/home/magno/Downloads/avr8-gnu-toolchain-linux_x86_64/avr/include/string.h:

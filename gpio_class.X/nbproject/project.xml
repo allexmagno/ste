@@ -3,12 +3,12 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>steinhart-hart</name>
-            <creation-uuid>805a81bc-d6a6-42e1-a93c-34e081e1486f</creation-uuid>
+            <name>gpio_class</name>
+            <creation-uuid>54fcb2ed-3116-4200-a038-2d7a78838727</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions/>
             <cpp-extensions>cpp</cpp-extensions>
-            <header-extensions/>
+            <header-extensions>h</header-extensions>
             <asminc-extensions/>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>

@@ -10,16 +10,16 @@
 
 #include <stdint.h>
 
-class GPIO {
+class gpio {
 public:
     
     enum PortDirection_t{
         INPUT = 0,
         OUTPUT = 1
     };
-    GPIO();
-    GPIO(uint8_t id, PortDirection_t dir);
-    virtual ~GPIO();
+    gpio();
+    gpio(uint8_t id, PortDirection_t dir);
+    virtual ~gpio();
     
     bool get();
     void set(bool val = 1);

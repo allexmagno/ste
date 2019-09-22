@@ -12,8 +12,8 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>GPIO.h</itemPath>
-      <itemPath>GPIO.cpp</itemPath>
+      <itemPath>GPIO_Port.cpp</itemPath>
+      <itemPath>GPIO_Port.h</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -47,7 +47,7 @@
         </archiverTool>
         <loading>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
-          <parseOnProdLoad>true</parseOnProdLoad>
+          <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
         <subordinates>
@@ -136,7 +136,7 @@
         <property key="eep" value="false"/>
         <property key="external-ram-check" value="false"/>
         <property key="hex" value="true"/>
-        <property key="lss" value="true"/>
+        <property key="lss" value="false"/>
         <property key="omit-pack-options" value="false"/>
         <property key="relax-branches" value="false"/>
         <property key="srec" value="false"/>

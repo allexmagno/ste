@@ -7,19 +7,19 @@
 
 #ifndef GPIO_H
 #define	GPIO_H
-#include <stdint.h>
+#include <avr/io.h>
 
 
-class gpio {
+class GPIO {
 public:
     
     enum PortDirection_t{
         INPUT = 0,
         OUTPUT = 1
     };
-    gpio();
-    gpio(uint8_t id, PortDirection_t dir);
-    virtual ~gpio();
+    GPIO();
+    GPIO(uint8_t id, PortDirection_t dir);
+
     
     bool get();
     void set(bool val = 1);

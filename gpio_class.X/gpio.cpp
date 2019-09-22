@@ -8,23 +8,14 @@
 #include "gpio.h"
 #include <avr/io.h>
 
-gpio::gpio() {
+GPIO::GPIO() {
 }
 
-gpio::gpio(uint8_t id, PortDirection_t dir) {
+GPIO::GPIO(uint8_t id, PortDirection_t dir):_id(id) {
     
     switch(id){
-        case 0:
-            _id = id;
-            _bit = PE0;
-            if(dir)
-                DDRE |= (1 << PE0);
-            else
-                DDRE &= ~(1 << PE0);
-            break;
-            
+        case 0:  
         case 1:
-            _id = id;
             _bit = (1 << _id);
             if(dir)
                 DDRE |= _bit;
@@ -32,123 +23,149 @@ gpio::gpio(uint8_t id, PortDirection_t dir) {
                 DDRE &= ~_bit;
             break;
         
-        case 2:
-            _id = id;
-            _bit = PE4;
-            if (dir == OUTPUT)
-                DDRE |= (1 << PE4);
-            else
-                DDRE &= ~(1 << PE4);
-            break;
-        
+        case 2:        
         case 3:
-            _id = id;
-            if (dir == OUTPUT)
-                DDRE |= (1 << PE5);
+            _bit = id + 2;
+            if (dir)
+                DDRE |= _bit;
             else
-                DDRE &= ~(1 << PE5);
+                DDRE &= ~_bit;
             break;
-            
         case 4:
-            _id = id;
-            if (dir == OUTPUT)
-                DDRG |= (1 << PG5);
+            
+            _bit = (1 << (_id+1));
+            if (dir)
+                DDRG |= _bit;
             else
-                DDRG &= (1 << PG5);
-            break;
-                        
+                DDRG &= ~_bit;
+            break; 
         case 5:
-            _id = id;
-            if (dir == OUTPUT)
-                DDRE |= (1 << PE3);
+            _bit = (1 << (_id-2));
+            if (dir)
+                DDRE |= _bit;
             else
-                DDRE &= ~(1 << PE3);
+                DDRE &= ~_bit;
             break;    
             
-        case 6:
-            _id = id;
-            if (dir == OUTPUT)
-                DDRH |= (1 << PH3);
-            else
-                DDRH &= ~(1 << PH3);
-            break;    
-        
+        case 6:        
         case 7:
-            _id = id;
-            if (dir == OUTPUT)
-                DDRH |= (1 << PH4);
-            else
-                DDRH &= ~(1 << PH4);
-            break;
-            
-        case 8:
-            _id = id;
-            if (dir == OUTPUT)
-                DDRH |= (1 << PH5);
-            else
-                DDRH &= ~(1 << PH5);
-            break;   
-            
+        case 8:     
         case 9:
-            _id = id;
-            if (dir == OUTPUT)
+            _bit  = (1 << (_id-3));
+            if (dir)
                 DDRH |= (1 << PH6);
             else
                 DDRH &= ~(1 << PH6);
             break;
             
         case 10:
-            _id = id;
-            if (dir == OUTPUT)
-                DDRB |= (1 << PB4);
-            else
-                DDRB &= ~(1 << PB4);
-            break;
-            
-        case 11:
-            _id = id;
-            if (dir == OUTPUT)
-                DDRB |= (1 << PB5);
-            else
-                DDRB &= ~(1 << PB5);
-            break;
-            
+        case 11: 
         case 12:
-            _id = id;
-            if(dir == OUTPUT)
-                DDRB |= (1 << PB6);
-            else
-                DDRB &= ~(1 << PB6);
-            break;
-            
         case 13:
-            _id = id;
-            if (dir == OUTPUT)
-                DDRB |= (1 << PB7);
+            _id = id -6;
+            _bit = (1 << _id);
+            if (dir)
+                DDRB |= _bit;
             else
-                DDRB &= ~(1 << PB7);
-            break;
-            
-        default:
+                DDRB &= ~_bit;
             break;
     }    
     
 }
 
-gpio::~gpio() {
+void GPIO::clear(){
+    this->set(0);
 }
 
-void gpio::clear(){}
+bool GPIO::get(){
+    	switch (_id) {
+	case 0:
+	case 1:
+	case 2:
+	case 3:
+	case 5:
+		return (bool) PINE & (1 << _bit);
 
-bool gpio::get(){
-    return true;
+	case 4:
+		return (bool) PING & (1 << _bit);
+
+	case 6:
+	case 7:
+	case 8:
+	case 9:
+		return (bool) PINH & (1 << _bit);
+
+	case 10:
+	case 11:
+	case 12:
+	case 13:
+		return (bool) PINB & (1 << _bit);
+	}
+    return false;
 }
 
-void gpio::set(bool val){
+void GPIO::set(bool val){
+    
+    switch (_id){
+        case 0:            
+        case 1:
+        case 2:        
+        case 3:
+        case 5:
+            PORTE = val ? PORTE |= (1 << _bit) : PORTE &= ~(1 << _bit);
+            break;
+            
+        case 4:
+            PORTG = val ? PORTG |= (1 << _bit) : PORTG &= ~(1 << _bit);
+            break; 
+                    
+        case 6:        
+        case 7:
+        case 8:     
+        case 9:
+            PORTH = val ? PORTH |= (1 << _bit) : PORTH &= ~(1 << _bit);
+            break; 
+            
+        case 10:
+        case 11: 
+        case 12:
+        case 13:
+            PORTH = val ? PORTH |= (1 << _bit) : PORTH &= ~(1 << _bit);
+            break; 
+            
+        default:
+            break;
+    }
+}
+
+void GPIO::toggle(){
+    switch (_id) {
+	case 0:
+	case 1:
+	case 2:
+	case 3:
+	case 5:
+		PINE = (1 << _bit);
+		break;
+
+	case 4:
+		PING = (1 << _bit);
+		break;
+
+	case 6:
+	case 7:
+	case 8:
+	case 9:
+		PINH = (1 << _bit);
+		break;
+
+	case 10:
+	case 11:
+	case 12:
+	case 13:
+		PINB = (1 << _bit);
+		break;
+
+	}
     
 }
-
-void gpio::toggle(){
-    
-}
-

@@ -47,7 +47,7 @@
         </archiverTool>
         <loading>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
-          <parseOnProdLoad>true</parseOnProdLoad>
+          <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
         <subordinates>
@@ -92,7 +92,7 @@
         <property key="optimization-level" value="-O1"/>
         <property key="pack-struct" value="true"/>
         <property key="preprocess-only" value="false"/>
-        <property key="preprocessor-macros" value="F_CPU=16000000UL"/>
+        <property key="preprocessor-macros" value=""/>
         <property key="preprocessor-macros-undefined" value=""/>
         <property key="save-temps" value="false"/>
         <property key="short-calls" value="false"/>
@@ -136,7 +136,7 @@
         <property key="eep" value="false"/>
         <property key="external-ram-check" value="false"/>
         <property key="hex" value="true"/>
-        <property key="lss" value="true"/>
+        <property key="lss" value="false"/>
         <property key="omit-pack-options" value="false"/>
         <property key="relax-branches" value="false"/>
         <property key="srec" value="false"/>

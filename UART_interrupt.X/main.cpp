@@ -12,10 +12,10 @@ int main(){
 	char msg[] = "Byte Received: ";
  
 	while(1){
-		echo = uart.get();
+		//echo = uart.get();
 		uart.puts(msg);
-		uart.put(echo);
-		uart.put('\n');
+		//uart.put(echo);
+		//uart.put('\n');
         _delay_ms(1000);
 	}
  

@@ -18,7 +18,7 @@ UART::UART() {
 
 UART::UART(uint32_t baud, DATABITS_t db, PARITY_t parity, STOPBITS_t sb) {
     UBRR0 = F_CPU/16/baud-1;
-    UCSR0B |= (1 << RXEN0) | (1 << TXEN0);
+    UCSR0B |= (1 << RXEN0) | (1 << TXEN0) | (1 << RXCIE0);
     UCSR0C |= db | parity | sb;
 }
 
@@ -27,31 +27,26 @@ UART::UART(uint32_t baud, DATABITS_t db, PARITY_t parity, STOPBITS_t sb) {
 }*/
 
 void UART::put(uint8_t data){
-    // UDRIE0 verifica se o buffer está livre
-   // _tx_buffer = data;
-    //UCSR0A |= (1 << UDRIE0);
-    while ( !(UCSR0A & (1 << UDRE0)));
-    UDR0 = data;
-    // UDRIE0 = true
+    _tx_buffer = data;
+    UCSR0B |= (1 << UDRIE0);
 };
 
 void UART::puts(const char * msg){
-    // Criar uma fila para tx_buffer
-    while ( !(UCSR0A & (1 << UDRE0)));
     for(int i = 0; msg[i] != 0; i++){
         put((uint8_t) msg[i]);
     }
+    
 };
 
 uint8_t UART::get(){
-    //has_data = false;
-    //return _rx_buffer;
-    return UDR0;
+    has_data = false;
+    return _rx_buffer;
+    //return UDR0;
 };
 
 bool UART::get_has_data(){
-    //return has_data;
-    return !(UCSR0A & (1 << RXC0));
+    return has_data;
+    //return !(UCSR0A & (1 << RXC0));
 };
 
 void UART::rx_isr_handler(){
@@ -61,9 +56,7 @@ void UART::rx_isr_handler(){
 };
 void UART::tx_isr_handler(){
     UDR0 = _tx_buffer;
-    // Antes verificar se a fila ta vazia
-    //UDRIE0 = false;
-    UCSR0A &= ~(1 << UDRIE0);
+    UCSR0B &= ~(1 << UDRIE0);
 };
 
 ISR(USART0_RX_vect)
@@ -71,7 +64,7 @@ ISR(USART0_RX_vect)
     UART::rx_isr_handler();
 }
 
-ISR(USART0_TX_vect)
+ISR(USART0_UDRE_vect)
 {
     UART::tx_isr_handler();
 }

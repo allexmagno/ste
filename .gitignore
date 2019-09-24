@@ -10,3 +10,9 @@
 /GPIO_Port.X/dist/
 /UART.X/build/
 /UART.X/dist/
+/GPIO_V3.X/build/
+/GPIO_V3.X/dist/
+/UART_interrupt.X/build/
+/UART_interrupt.X/dist/
+/UART_fila.X/build/
+/UART_fila.X/dist/

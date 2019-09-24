@@ -1,35 +1,35 @@
 /* 
- * File:   gpio.h
+ * File:   GPIO.h
  * Author: root
  *
- * Created on 9 de Setembro de 2019, 07:39
+ * Created on 23 de Setembro de 2019, 20:02
  */
 
 #ifndef GPIO_H
 #define	GPIO_H
-#include <avr/io.h>
 
+#include "GPIO_Port.h"
 
 class GPIO {
 public:
-    
-    enum PortDirection_t{
+    enum PortDirection_t {
         INPUT = 0,
         OUTPUT = 1
     };
-    GPIO();
-    GPIO(uint8_t id, PortDirection_t dir);
-    //virtual ~GPIO();
     
+    GPIO(uint8_t id, PortDirection_t dir);
+    //~GPIO();
+
     bool get();
     void set(bool val = 1);
     void clear();
     void toggle();
-private:
-    uint8_t _id;
-    uint8_t _bit;
 
+private:
+    GPIO_PORT::GPIO_Port * _port; 
+    uint8_t _bit;
 };
 
-#endif	/* GPIO_H */
 
+
+#endif	/* GPIO_H */

@@ -8,6 +8,7 @@
 
 #ifndef UART_H
 #define	UART_H
+#include "FILA.h"
 #include <stdint.h>
 
 class UART {
@@ -46,8 +47,8 @@ public:
 private:
     
     static bool has_data;
-    static uint8_t _rx_buffer;
-    static uint8_t _tx_buffer;
+    static FILA<uint8_t> _rx_buffer;
+    static FILA<uint8_t> _tx_buffer;
 
 };
 

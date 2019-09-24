@@ -62,8 +62,8 @@ gpio::gpio(uint8_t id, PortDirection_t dir):_bit(id){
 }
 
 
-gpio::~gpio() {
-}
+/*gpio::~gpio() {
+}*/
 
 bool gpio::get() {
     return *_pin & (1 << _bit);

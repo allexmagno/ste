@@ -19,7 +19,7 @@ public:
     };
     gpio();
     gpio(uint8_t id, PortDirection_t dir);
-    virtual ~gpio();
+    //virtual ~gpio();
     
     bool get();
     void set(bool val = 1);

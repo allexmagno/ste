@@ -16,3 +16,5 @@
 /UART_interrupt.X/dist/
 /UART_fila.X/build/
 /UART_fila.X/dist/
+/Timer_Timeout.X/build/
+/Timer_Timeout.X/dist/

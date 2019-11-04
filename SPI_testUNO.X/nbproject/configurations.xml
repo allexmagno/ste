@@ -12,11 +12,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>UART.h</itemPath>
-      <itemPath>UART.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
-      <itemPath>FILA.h</itemPath>
-      <itemPath>LISTA.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -29,7 +25,7 @@
     <conf name="default" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <targetDevice>ATmega2560</targetDevice>
+        <targetDevice>ATmega328P</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
         <platformTool></platformTool>
@@ -49,7 +45,7 @@
         </archiverTool>
         <loading>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
-          <parseOnProdLoad>true</parseOnProdLoad>
+          <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
         <subordinates>
@@ -58,8 +54,8 @@
       <makeCustomizationType>
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
         <makeCustomizationPreStep></makeCustomizationPreStep>
-        <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
-        <makeCustomizationPostStep>avrdude -c avrispmkII -P /dev/ttyUSB0 -D -p ${Device} -U flash:w:${ImagePath}:i</makeCustomizationPostStep>
+        <makeCustomizationPostStepEnabled>true</makeCustomizationPostStepEnabled>
+        <makeCustomizationPostStep>avrdude -c avrispmkII -P /dev/ttyACM0 -D -p ${Device} -U flash:w:${ImagePath}:i</makeCustomizationPostStep>
         <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
@@ -94,7 +90,7 @@
         <property key="optimization-level" value="-O1"/>
         <property key="pack-struct" value="true"/>
         <property key="preprocess-only" value="false"/>
-        <property key="preprocessor-macros" value="F_CPU=16000000UL"/>
+        <property key="preprocessor-macros" value=""/>
         <property key="preprocessor-macros-undefined" value=""/>
         <property key="save-temps" value="false"/>
         <property key="short-calls" value="false"/>
@@ -164,38 +160,6 @@
         <property key="sram-segment" value=""/>
         <property key="v-printf" value="false"/>
       </AVR-LD>
-      <item path="UART.cpp" ex="false" overriding="false">
-        <AVR-AR>
-        </AVR-AR>
-        <AVR-AS>
-        </AVR-AS>
-        <AVR-AS-PRE>
-        </AVR-AS-PRE>
-        <AVR-CPP>
-        </AVR-CPP>
-        <AVR-GCC>
-        </AVR-GCC>
-        <AVR-Global>
-        </AVR-Global>
-        <AVR-LD>
-        </AVR-LD>
-      </item>
-      <item path="UART.h" ex="false" overriding="false">
-        <AVR-AR>
-        </AVR-AR>
-        <AVR-AS>
-        </AVR-AS>
-        <AVR-AS-PRE>
-        </AVR-AS-PRE>
-        <AVR-CPP>
-        </AVR-CPP>
-        <AVR-GCC>
-        </AVR-GCC>
-        <AVR-Global>
-        </AVR-Global>
-        <AVR-LD>
-        </AVR-LD>
-      </item>
     </conf>
   </confs>
 </configurationDescriptor>

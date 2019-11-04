@@ -18,3 +18,15 @@
 /UART_fila.X/dist/
 /Timer_Timeout.X/build/
 /Timer_Timeout.X/dist/
+/a3_correcao.X/build/
+/a3_correcao.X/dist/
+/extint.X/build/
+/extint.X/dist/
+/GPIO_extint.X/dist/
+/GPIO_extint.X/build/
+/SPI.X/build/
+/SPI.X/dist/
+/SPI_testUNO.X/build/
+/SPI_testUNO.X/dist/
+/SPI_LISTA.X/build/
+/SPI_LISTA.X/dist/

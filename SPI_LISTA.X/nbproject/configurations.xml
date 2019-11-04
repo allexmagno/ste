@@ -12,11 +12,14 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>UART.h</itemPath>
-      <itemPath>UART.cpp</itemPath>
-      <itemPath>main.cpp</itemPath>
-      <itemPath>FILA.h</itemPath>
+      <itemPath>SPI.h</itemPath>
+      <itemPath>SPI.cpp</itemPath>
       <itemPath>LISTA.h</itemPath>
+      <itemPath>GPIO.cpp</itemPath>
+      <itemPath>GPIO.h</itemPath>
+      <itemPath>GPIO_Port.cpp</itemPath>
+      <itemPath>GPIO_Port.h</itemPath>
+      <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -49,7 +52,7 @@
         </archiverTool>
         <loading>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
-          <parseOnProdLoad>true</parseOnProdLoad>
+          <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
         <subordinates>
@@ -59,7 +62,7 @@
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
         <makeCustomizationPreStep></makeCustomizationPreStep>
         <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
-        <makeCustomizationPostStep>avrdude -c avrispmkII -P /dev/ttyUSB0 -D -p ${Device} -U flash:w:${ImagePath}:i</makeCustomizationPostStep>
+        <makeCustomizationPostStep></makeCustomizationPostStep>
         <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
@@ -164,38 +167,6 @@
         <property key="sram-segment" value=""/>
         <property key="v-printf" value="false"/>
       </AVR-LD>
-      <item path="UART.cpp" ex="false" overriding="false">
-        <AVR-AR>
-        </AVR-AR>
-        <AVR-AS>
-        </AVR-AS>
-        <AVR-AS-PRE>
-        </AVR-AS-PRE>
-        <AVR-CPP>
-        </AVR-CPP>
-        <AVR-GCC>
-        </AVR-GCC>
-        <AVR-Global>
-        </AVR-Global>
-        <AVR-LD>
-        </AVR-LD>
-      </item>
-      <item path="UART.h" ex="false" overriding="false">
-        <AVR-AR>
-        </AVR-AR>
-        <AVR-AS>
-        </AVR-AS>
-        <AVR-AS-PRE>
-        </AVR-AS-PRE>
-        <AVR-CPP>
-        </AVR-CPP>
-        <AVR-GCC>
-        </AVR-GCC>
-        <AVR-Global>
-        </AVR-Global>
-        <AVR-LD>
-        </AVR-LD>
-      </item>
     </conf>
   </confs>
 </configurationDescriptor>

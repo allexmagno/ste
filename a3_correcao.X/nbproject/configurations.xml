@@ -12,11 +12,19 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Timer.h</itemPath>
+      <itemPath>Timer.cpp</itemPath>
+      <itemPath>Singleton.h</itemPath>
+      <itemPath>Timeout.h</itemPath>
+      <itemPath>Timeout.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+      <itemPath>GPIO.cpp</itemPath>
+      <itemPath>GPIO.h</itemPath>
+      <itemPath>GPIO_Port.cpp</itemPath>
+      <itemPath>GPIO_Port.h</itemPath>
       <itemPath>UART.h</itemPath>
       <itemPath>UART.cpp</itemPath>
-      <itemPath>main.cpp</itemPath>
       <itemPath>FILA.h</itemPath>
-      <itemPath>LISTA.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -58,7 +66,7 @@
       <makeCustomizationType>
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
         <makeCustomizationPreStep></makeCustomizationPreStep>
-        <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
+        <makeCustomizationPostStepEnabled>true</makeCustomizationPostStepEnabled>
         <makeCustomizationPostStep>avrdude -c avrispmkII -P /dev/ttyUSB0 -D -p ${Device} -U flash:w:${ImagePath}:i</makeCustomizationPostStep>
         <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
@@ -138,7 +146,7 @@
         <property key="eep" value="false"/>
         <property key="external-ram-check" value="false"/>
         <property key="hex" value="true"/>
-        <property key="lss" value="false"/>
+        <property key="lss" value="true"/>
         <property key="omit-pack-options" value="false"/>
         <property key="relax-branches" value="false"/>
         <property key="srec" value="false"/>
@@ -164,38 +172,6 @@
         <property key="sram-segment" value=""/>
         <property key="v-printf" value="false"/>
       </AVR-LD>
-      <item path="UART.cpp" ex="false" overriding="false">
-        <AVR-AR>
-        </AVR-AR>
-        <AVR-AS>
-        </AVR-AS>
-        <AVR-AS-PRE>
-        </AVR-AS-PRE>
-        <AVR-CPP>
-        </AVR-CPP>
-        <AVR-GCC>
-        </AVR-GCC>
-        <AVR-Global>
-        </AVR-Global>
-        <AVR-LD>
-        </AVR-LD>
-      </item>
-      <item path="UART.h" ex="false" overriding="false">
-        <AVR-AR>
-        </AVR-AR>
-        <AVR-AS>
-        </AVR-AS>
-        <AVR-AS-PRE>
-        </AVR-AS-PRE>
-        <AVR-CPP>
-        </AVR-CPP>
-        <AVR-GCC>
-        </AVR-GCC>
-        <AVR-Global>
-        </AVR-Global>
-        <AVR-LD>
-        </AVR-LD>
-      </item>
     </conf>
   </confs>
 </configurationDescriptor>

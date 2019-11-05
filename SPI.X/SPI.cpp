@@ -2,26 +2,24 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-FILA<GPIO> SPI::_slaves(8);
-
-SPI::SPI() {
-}
-
-SPI::SPI(Mode_t md, ClockRate_t sck, DataMode_t dtm, DataOrder_t dto) {
+SPI::SPI(Mode_t md, ClockRate_t sck, DataMode_t dtm, DataOrder_t dto, GPIO slaves[]) {
     _msk = (sck % 4);
-    if (sck > 4){
-        SPSR |=  1;
-    }
     
     if (md){
+        if (sck > 4){
+            SPCR = _msk;
+            SPSR = 1;
+        }else{
+            SPCR = _msk;
+        }
         SPCR |= (1 << MSTR);
         DDRB |= (1 << PB2) | (1 << PB1); // Configura MOSI e SCK
         
     }else{
-        SPCR &= ~(1 << MSTR);
         DDRB = (1<<PB3);
     }
-    SPCR |= _msk | (1 << SPE); // Habilita SPI mestre com clk de 16
+    SPCR |= (1<<SPE);
+    _slaves = slaves;
 }
 
 void SPI::put(uint8_t data){
@@ -38,12 +36,13 @@ void SPI::puts(const char * msg){
 
 
 uint8_t SPI::get(){
-    return 0;
+    //  Wait for reception complete
+    while(!(SPSR & (1<<SPIF)));
+    // Return Data Register 
+    return SPDR;
 }
 
 
-void SPI::set_slave(GPIO slave){
-    _slaves.enfileira(slave);
+GPIO SPI::select_slave(uint8_t index){
+    return _slaves[index];
 }
-
-

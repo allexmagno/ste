@@ -9,7 +9,6 @@
 #define	SPI_H
 #include <stdint.h>
 #include "GPIO.h"
-#include "LISTA.h"
 
 class SPI {
 public:
@@ -42,19 +41,18 @@ public:
     };
     
     SPI();
-    SPI(Mode_t md = MASTER, ClockRate_t sck = X_4, DataMode_t dtm = MODE_0, DataOrder_t dto = MSB);
+    SPI(Mode_t md = MASTER, ClockRate_t sck = X_4, DataMode_t dtm = MODE_0, DataOrder_t dto = MSB, GPIO slaves[] = 0);
     void put(uint8_t data);
     void puts(const char * msg);
     uint8_t get();
     bool get_has_data();
-    void set_slave(GPIO gpio);
-    GPIO slave_select(uint8_t slave);
+    GPIO select_slave(uint8_t index);
     static void rx_isr_handler();
     static void tx_isr_handler();
     
 private:
-    static LISTA<GPIO> _slaves;
     uint8_t _msk;
+    GPIO *_slaves;
 };
 
 #endif	/* SPI_H */

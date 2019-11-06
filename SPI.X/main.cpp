@@ -33,15 +33,20 @@ char SPI_SlaveReceive(void)
 
 UART uart(9600, UART::DATABITS_8, UART::NONE, UART::STOPBIT_1);
 
-GPIO slave0(0, GPIO::OUTPUT);	
-GPIO slaves[] = {slave0};
+GPIO slave0(53, GPIO::OUTPUT);	
+
     
-SPI spi(SPI::SLAVE, SPI::X_4, SPI::MODE_0, SPI::MSB, slaves);
+//SPI spi(SPI::SLAVE, SPI::X_4, SPI::MODE_0, SPI::MSB, slaves);
+
 int main(){
+    slave0.set(1);
+    GPIO slaves[] = {slave0};
+    SPI spi(SPI::MASTER, SPI::X_4, SPI::MODE_0, SPI::MSB, slaves);
     sei();
     //char msg[] = (char) spi.get();    
     while(1){
-       uart.put(spi.get());
+        spi.put('a', 0);
+        _delay_ms(1000);
       //  spi.puts(msg);
     }
 }

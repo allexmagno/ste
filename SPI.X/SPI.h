@@ -42,14 +42,13 @@ public:
     
     SPI();
     SPI(Mode_t md = MASTER, ClockRate_t sck = X_4, DataMode_t dtm = MODE_0, DataOrder_t dto = MSB, GPIO slaves[] = 0);
-    void put(uint8_t data);
-    void puts(const char * msg);
+    void put(uint8_t data, uint8_t index);
+    void puts(const char * msg, uint8_t index);
     uint8_t get();
     bool get_has_data();
     GPIO select_slave(uint8_t index);
     static void rx_isr_handler();
     static void tx_isr_handler();
-    
 private:
     uint8_t _msk;
     GPIO *_slaves;

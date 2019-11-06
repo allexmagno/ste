@@ -74,4 +74,31 @@ int main(){
         uart.put('a');
         uart.put(SPI_SlaveReceive());        
 	}
- }*/
+ }
+ 
+void SPI_Master_setup(void){
+    DDRB |= (1 << PB2) | (1 << PB1); // Configura MOSI e SCK
+    SPCR |= (1 << MSTR) | (1 << SPE) | (1 << SPR0); // Habilita SPI mestre com clk de 16
+    
+}
+void SPI_Master_tx(char data){
+    SPDR = data; // Envia dado para o registrador
+    while(!(SPSR & (1 << SPIF))); // Espera a transmissao (quando SPIF for 1)
+}
+
+void SPI_SlaveInit(void)
+{
+    // Set MISO output, all others input
+    DDRB = (1<<PB3);
+    // Enable SPI
+    SPCR = (1<<SPE);
+}
+
+char SPI_SlaveReceive(void)
+{
+    //  Wait for reception complete
+    while(!(SPSR & (1<<SPIF)));
+    // Return Data Register 
+    return SPDR;
+}
+ */

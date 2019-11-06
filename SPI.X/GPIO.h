@@ -14,7 +14,7 @@ public:
     
     GPIO(uint8_t id, PortDirection_t dir);
     //~GPIO();
-
+    GPIO();
     bool get();
     void set(bool val = 1);
     void clear();

@@ -2,7 +2,7 @@
 #include <avr/io.h>
 #include "GPIO.h"
 
-
+GPIO::GPIO(){}
 GPIO::GPIO(uint8_t id, PortDirection_t dir)
 {
 	_bit = GPIO_PORT::id_to_bit[id];
